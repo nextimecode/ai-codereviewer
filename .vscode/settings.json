@@ -1,8 +1,14 @@
 {
+  "peacock.color": "#85f2c9",
+  "peacock.affectTitleBar": false,
+  "peacock.affectStatusBar": true,
+  "peacock.affectActivityBar": false,
+  "peacock.affectSashHover": false,
   "workbench.colorCustomizations": {
     "statusBar.background": "#85f2c9",
-    "activityBarBadge.foreground": "#15202b",
-    "activityBarBadge.background": "#85f2c9",
-    "statusBar.foreground": "#15202b"
+    "statusBar.foreground": "#15202b",
+    "statusBarItem.hoverBackground": "#57edb5",
+    "statusBarItem.remoteBackground": "#85f2c9",
+    "statusBarItem.remoteForeground": "#15202b"
   }
 }

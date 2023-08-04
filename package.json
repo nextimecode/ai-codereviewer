@@ -18,7 +18,6 @@
   },
   "dependencies": {
     "@actions/core": "^1.10.0",
-    "@octokit/request": "^8.1.1",
     "@octokit/rest": "^20.0.1",
     "minimatch": "^9.0.3",
     "node-fetch": "^3.3.2",

@@ -8,9 +8,6 @@ dependencies:
   '@actions/core':
     specifier: ^1.10.0
     version: 1.10.0
-  '@octokit/request':
-    specifier: ^8.1.1
-    version: 8.1.1
   '@octokit/rest':
     specifier: ^20.0.1
     version: 20.0.1

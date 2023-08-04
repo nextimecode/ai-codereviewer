@@ -5,18 +5,18 @@ import { Octokit } from '@octokit/rest'
 import parseDiff, { Chunk, File } from 'parse-diff'
 import { minimatch } from 'minimatch'
 import fetch from 'node-fetch';
-import { request } from '@octokit/request';
+
+(global as any).fetch = fetch;
 
 const GITHUB_TOKEN: string = core.getInput('GITHUB_TOKEN')
 const OPENAI_API_KEY: string = core.getInput('OPENAI_API_KEY')
 
-const octokit = new Octokit({ auth: GITHUB_TOKEN })
-
-request.defaults({
+const octokit = new Octokit({ 
+  auth: GITHUB_TOKEN, 
   request: {
     fetch: fetch,
   },
-});
+})
 
 const configuration = new Configuration({
   apiKey: OPENAI_API_KEY
