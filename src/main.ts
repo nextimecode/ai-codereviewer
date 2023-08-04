@@ -96,17 +96,18 @@ async function getBaseAndHeadShas(
 }
 
 function createPrompt(file: File, chunk: Chunk, prDetails: PRDetails): string {
-  return `Sua tarefa é revisar pull requests. Instruções:
-- Forneça a resposta no seguinte formato JSON:  [{"lineNumber":  <line_number>, "reviewComment": "<review comment>"}]
-- Não dê comentários positivos ou elogios.
-- Forneça comentários e sugestões APENAS se houver algo a melhorar por exemplo em clean code ou SOLID, caso contrário, retorne um array vazio.
-- Escreva o comentário no formato GitHub Markdown.
-- Use a descrição dada apenas para o contexto geral e comente apenas o código.
-- IMPORTANTE: NUNCA sugira adicionar comentários ao código.
+  return `Your task is to review pull requests. Instructions:
+- Provide the response in following JSON format:  [{"lineNumber":  <line_number>, "reviewComment": "<review comment>"}]
+- Do not give positive comments or compliments.
+- Provide comments and suggestions ONLY if there is something to improve, otherwise return an empty array.
+- Write the comment in GitHub Markdown format.
+- Use the given description only for the overall context and only comment the code.
+- IMPORTANT: your response should be in Brazilian Portuguese.
+- IMPORTANT: NEVER suggest adding comments to the code.
 
-Revise o seguinte diff de código no arquivo "${
+Review the following code diff in the file "${
     file.to
-  }" e leve em consideração o título e a descrição do pull request ao escrever a resposta.
+  }" and take the pull request title and description into account when writing the response.
   
 Pull request title: ${prDetails.title}
 Pull request description:
