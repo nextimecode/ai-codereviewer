@@ -4,6 +4,8 @@ import { Configuration, OpenAIApi } from 'openai'
 import { Octokit } from '@octokit/rest'
 import parseDiff, { Chunk, File } from 'parse-diff'
 import { minimatch } from 'minimatch'
+import fetch from 'node-fetch';
+import { request } from '@octokit/request';
 
 const GITHUB_TOKEN: string = core.getInput('GITHUB_TOKEN')
 const OPENAI_API_KEY: string = core.getInput('OPENAI_API_KEY')
