@@ -1,4 +1,4 @@
-name: "AI Code Review Action"
+name: "AI NeXTIME Code Review"
 description: "Perform code reviews and comment on diffs using OpenAI API."
 inputs:
   GITHUB_TOKEN:
@@ -12,7 +12,7 @@ inputs:
     required: false
     default: ""
 runs:
-  using: "node16"
+  using: "node18"
   main: "dist/index.js"
 branding:
   icon: "aperture"

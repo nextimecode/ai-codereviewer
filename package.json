@@ -1,7 +1,9 @@
 {
-  "name": "open-ai-reviewer",
+  "name": "nextime-ai-reviewer",
   "version": "1.0.0",
   "description": "Open AI powered code reviews",
+  "repository": "https://github.com/nextimecode/ai-codereviewer",
+  "packageManager": "pnpm@8.6.10",
   "main": "lib/main.js",
   "author": "Pedro Duarte - NeXTIME",
   "license": "MIT",
