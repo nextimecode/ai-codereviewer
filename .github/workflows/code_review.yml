@@ -41,16 +41,16 @@ jobs:
           cache-dependency-path: '**/pnpm-lock.yaml'      
       
       - name: Run Format
-        run: pnpm format
+        run: pnpm run format
       
       - name: Run lint
-        run: pnpm lint
+        run: pnpm run lint
       
       - name: Run build
-        run: pnpm build
+        run: pnpm run build
       
       - name: Run package
-        run: pnpm package
+        run: pnpm run package
       
       - name: Code Review
         uses: nextimecode/ai-codereviewer@main
