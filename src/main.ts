@@ -12,6 +12,12 @@ const OPENAI_API_KEY: string = core.getInput('OPENAI_API_KEY')
 
 const octokit = new Octokit({ auth: GITHUB_TOKEN })
 
+request.defaults({
+  request: {
+    fetch: fetch,
+  },
+});
+
 const configuration = new Configuration({
   apiKey: OPENAI_API_KEY
 })
