@@ -9,11 +9,39 @@ jobs:
   code_review:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout repository
+      - name: Checkout
         uses: actions/checkout@v3
+
+      - uses: pnpm/action-setup@v2
+        with:
+          version: 8
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
+
+      - name: Install dependencies
+        run: pnpm install
+
+      - name: Run build
+        run: pnpm run build
+
+      - name: Run package
+        run: pnpm run package
+
+      - name: Run Format
+        run: pnpm run format
+
+      - name: Run lint
+        run: pnpm run lint
+
+      - name: Run typecheck
+        run: pnpm run typecheck
+
       - name: Code Review
-        uses: freeedcom/ai-codereviewer@main
+        uses: nextimecode/ai-codereviewer@main
         with:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
-          exclude: "yarn.lock,dist/**"
+          exclude: '**/*.json, **/*.md, pnpm-lock, dist/**'
