@@ -7,9 +7,6 @@
   "main": "lib/main.js",
   "author": "Pedro Duarte - NeXTIME",
   "license": "MIT",
-  "engines": {
-    "node": "18.x"
-  },
   "scripts": {
     "build": "tsc",
     "package": "ncc build --source-map --license licenses.txt",
@@ -23,7 +20,6 @@
     "@actions/core": "^1.10.0",
     "@octokit/rest": "^20.0.1",
     "minimatch": "^9.0.3",
-    "node-fetch": "^3.3.2",
     "openai": "^3.3.0",
     "parse-diff": "^0.11.1",
     "ts-node": "^10.9.1"
