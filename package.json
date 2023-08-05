@@ -7,9 +7,6 @@
   "main": "lib/main.js",
   "author": "Pedro Duarte - NeXTIME",
   "license": "MIT",
-  "engines": {
-    "node": "18.x"
-  },
   "scripts": {
     "build": "tsc",
     "package": "ncc build --source-map --license licenses.txt",
