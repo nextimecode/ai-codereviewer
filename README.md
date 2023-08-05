@@ -42,7 +42,8 @@ jobs:
         with:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
-          exclude: '**/*.json, **/*.md' # Optional: exclude patterns separated by commas
+          OPENAI_API_MODEL: "gpt-4" # Optional: defaults to "gpt-4"
+          exclude: "**/*.json, **/*.md" # Optional: exclude patterns separated by commas
 ```
 
 4. Replace `your-username` with your GitHub username or organization name where the AI Code Reviewer repository is
@@ -61,6 +62,8 @@ the OpenAI API. It then generates review comments based on the AI's response and
 
 Contributions are welcome! Please feel free to submit issues or pull requests to improve the AI Code Reviewer GitHub
 Action.
+
+Let the maintainer generate the final package.
 
 ## License
 

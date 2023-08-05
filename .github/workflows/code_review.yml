@@ -9,39 +9,12 @@ jobs:
   code_review:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
+      - name: Checkout repository
         uses: actions/checkout@v3
-
-      - uses: pnpm/action-setup@v2
-        with:
-          version: 8
-
-      - name: Setup Node.js
-        uses: actions/setup-node@v3
-        with:
-          node-version: 16
-
-      - name: Install dependencies
-        run: pnpm install
-
-      - name: Run build
-        run: pnpm run build
-
-      - name: Run package
-        run: pnpm run package
-
-      - name: Run Format
-        run: pnpm run format
-
-      - name: Run lint
-        run: pnpm run lint
-
-      - name: Run typecheck
-        run: pnpm run typecheck
-
       - name: Code Review
         uses: nextimecode/ai-codereviewer@main
         with:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
-          exclude: '**/*.json, **/*.md, pnpm-lock, dist/**'
+          OPENAI_API_MODEL: 'gpt-3.5-turbo'
+          exclude: 'pnpm-lock, dist/**, **/*.json, **/*.md, .turbo/**, storybook-static/**, .storybook/**, .vscode/**'
