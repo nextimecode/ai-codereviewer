@@ -7,6 +7,7 @@ import minimatch from 'minimatch'
 
 const GITHUB_TOKEN: string = core.getInput('GITHUB_TOKEN')
 const OPENAI_API_KEY: string = core.getInput('OPENAI_API_KEY')
+const OPENAI_API_MODEL: string = 'gpt-3.5-turbo'
 
 const octokit = new Octokit({ auth: GITHUB_TOKEN })
 
@@ -132,7 +133,7 @@ async function getAIResponse(prompt: string): Promise<Array<{
   reviewComment: string
 }> | null> {
   const queryConfig = {
-    model: 'gpt-3.5-turbo',
+    model: OPENAI_API_MODEL,
     temperature: 0.2,
     max_tokens: 700,
     top_p: 1,
@@ -208,17 +209,16 @@ async function main() {
     const newHeadSha = eventData.after
 
     const response = await octokit.repos.compareCommits({
+      headers: {
+        accept: 'application/vnd.github.v3.diff'
+      },
       owner: prDetails.owner,
       repo: prDetails.repo,
       base: newBaseSha,
       head: newHeadSha
     })
 
-    diff = response.data.diff_url
-      ? await octokit
-          .request({ url: response.data.diff_url })
-          .then(res => res.data)
-      : null
+    diff = String(response.data)
   } else {
     console.log('Unsupported event:', process.env.GITHUB_EVENT_NAME)
     return
