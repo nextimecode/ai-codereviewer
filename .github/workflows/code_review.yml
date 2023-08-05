@@ -16,5 +16,5 @@ jobs:
         with:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
-          OPENAI_API_MODEL: 'gpt-3.5-turbo'
+          OPENAI_API_MODEL: ${{ secrets.OPENAI_API_MODEL }}
           exclude: 'pnpm-lock, dist/**, **/*.json, **/*.md, .turbo/**, storybook-static/**, .storybook/**, .vscode/**'
