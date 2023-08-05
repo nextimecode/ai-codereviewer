@@ -14,7 +14,7 @@
     "lint": "prettier --check . '!dist/**/*'",
     "typecheck": "tsc --noEmit",
     "clean": "pnpm store prune && rm -rf node_modules tsconfig.tsbuildinfo",
-    "go": "pnpm run clean && pnpm i && pnpm run build && pnpm run package && pnpm run format && pnpm run lint && pnpm run typecheck"
+    "go": "pnpm run build && pnpm run package && pnpm run format && pnpm run lint && pnpm run typecheck"
   },
   "dependencies": {
     "@actions/core": "^1.10.0",
