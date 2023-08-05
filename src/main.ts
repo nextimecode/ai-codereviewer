@@ -3,11 +3,10 @@ import * as core from '@actions/core'
 import { Configuration, OpenAIApi } from 'openai'
 import { Octokit } from '@octokit/rest'
 import parseDiff, { Chunk, File } from 'parse-diff'
-import { minimatch } from 'minimatch'
+import minimatch from 'minimatch'
 
 const GITHUB_TOKEN: string = core.getInput('GITHUB_TOKEN')
 const OPENAI_API_KEY: string = core.getInput('OPENAI_API_KEY')
-const OPENAI_API_MODEL: string = core.getInput('OPENAI_API_MODEL')
 
 const octokit = new Octokit({ auth: GITHUB_TOKEN })
 
@@ -133,7 +132,7 @@ async function getAIResponse(prompt: string): Promise<Array<{
   reviewComment: string
 }> | null> {
   const queryConfig = {
-    model: OPENAI_API_MODEL,
+    model: 'gpt-3.5-turbo',
     temperature: 0.2,
     max_tokens: 700,
     top_p: 1,
@@ -170,13 +169,6 @@ function createComment(
 ): Array<{ body: string; path: string; line: number }> {
   return aiResponses.flatMap(aiResponse => {
     if (!file.to) {
-      return []
-    }
-    const commentLine = Number(aiResponse.lineNumber)
-    const chunkLineNumbers = chunk.changes.map((change: { ln?: number; ln2?: number }) =>
-      'ln' in change ? change.ln : change.ln2
-    )
-    if (!chunkLineNumbers.includes(commentLine)) {
       return []
     }
     return {
@@ -216,16 +208,17 @@ async function main() {
     const newHeadSha = eventData.after
 
     const response = await octokit.repos.compareCommits({
-      headers: {
-        accept: 'application/vnd.github.v3.diff'
-      },
       owner: prDetails.owner,
       repo: prDetails.repo,
       base: newBaseSha,
       head: newHeadSha
     })
 
-    diff = String(response.data)
+    diff = response.data.diff_url
+      ? await octokit
+          .request({ url: response.data.diff_url })
+          .then(res => res.data)
+      : null
   } else {
     console.log('Unsupported event:', process.env.GITHUB_EVENT_NAME)
     return
