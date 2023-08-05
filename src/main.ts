@@ -173,7 +173,9 @@ function createComment(
       return []
     }
     const commentLine = Number(aiResponse.lineNumber)
-    const chunkLineNumbers = chunk.changes.map(change => ('ln' in change ? change.ln : change.ln2))
+    const chunkLineNumbers = chunk.changes.map(change =>
+      'ln' in change ? change.ln : change.ln2
+    )
     if (!chunkLineNumbers.includes(commentLine)) {
       return []
     }
